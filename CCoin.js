@@ -115,6 +115,9 @@ bot.on("message", message => {
         return;
       }
       if (e > 0.5) { //lose
+              if ((math.eval(`${json.amount} - ${outStr}`)) < 1) {
+        return;
+      }
         console.log("you lose, " + e)
         message.channel.send(`You lost ${outStr} CCoins!`)
         let lose = math.chain(json.amount)
@@ -125,6 +128,9 @@ bot.on("message", message => {
           "status": "true"}`)
       }
       if (e < 0.5) { //win
+              if ((math.eval(`${json.amount} - ${outStr}`)) < 1) {
+        return;
+      }
         console.log("you win, " + e)
         message.channel.send(`You won ${outStr} CCoins!`)
         let win = math.chain(json.amount)
