@@ -67,16 +67,19 @@ bot.on("message", message => {
     if (cmd === '/pay') {
       const json1 = requireUncached(`./CCoins/${message.author.id}.json`)
       const json2 = requireUncached(`./CCoins/${message.mentions.users.first().id}.json`)
-      if ((math.eval(`${json1.amount} - ${args[1]}`)) < 1) {
+            var inStr = args[0];
+      var justOneDot = inStr.replace(/[.](?=.*?\.)/g, '');
+      var outStr = parseFloat(justOneDot.replace(/[^0-9.]/g, ''));
+      if ((math.eval(`${json1.amount} - ${outStr}`)) < 1) {
         return ("you do not have the funds atm fag")
       }
 
 
       let give = math.chain(json2.amount)
-        .add(args[1])
+        .add(outStr)
         .done()
       let get = math.chain(json1.amount)
-        .subtract(args[1])
+        .subtract(outStr)
         .done()
 
 
