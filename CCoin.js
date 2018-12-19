@@ -67,7 +67,7 @@ bot.on("message", message => {
     if (cmd === '/pay') {
       const json1 = requireUncached(`./CCoins/${message.author.id}.json`)
       const json2 = requireUncached(`./CCoins/${message.mentions.users.first().id}.json`)
-      if ((math.eval(`${json1.amount} - ${args[1]}`)) < 0) {
+      if ((math.eval(`${json1.amount} - ${args[1]}`)) < 1) {
         return ("you do not have the funds atm fag")
       }
 
@@ -108,7 +108,7 @@ bot.on("message", message => {
       var inStr = args[0];
       var justOneDot = inStr.replace(/[.](?=.*?\.)/g, '');
       var outStr = parseFloat(justOneDot.replace(/[^0-9.]/g, ''));
-      if ((math.eval(`${json.amount} - ${outStr}`)) < 0) {
+      if ((math.eval(`${json.amount} - ${outStr}`)) < 1) {
         return;
       }
       if (e > 0.5) { //lose
