@@ -111,13 +111,11 @@ bot.on("message", message => {
       var inStr = args[0];
       var justOneDot = inStr.replace(/[.](?=.*?\.)/g, '');
       var outStr = parseFloat(justOneDot.replace(/[^0-9.]/g, ''));
-      if ((math.eval(`${json.amount} - ${outStr}`)) < 1) {
-        return;
-      }
+      if ((math.eval(`${json.amount} - ${outStr}`)) < 1) return;
+      
       if (e > 0.5) { //lose
-              if ((math.eval(`${json.amount} - ${outStr}`)) < 1) {
-        return;
-      }
+             if ((math.eval(`${json.amount} - ${outStr}`)) < 1) return;
+      
         console.log("you lose, " + e)
         message.channel.send(`You lost ${outStr} CCoins!`)
         let lose = math.chain(json.amount)
@@ -128,9 +126,8 @@ bot.on("message", message => {
           "status": "true"}`)
       }
       if (e < 0.5) { //win
-              if ((math.eval(`${json.amount} - ${outStr}`)) < 1) {
-        return;
-      }
+              if ((math.eval(`${json.amount} - ${outStr}`)) < 1) return;
+      
         console.log("you win, " + e)
         message.channel.send(`You won ${outStr} CCoins!`)
         let win = math.chain(json.amount)
